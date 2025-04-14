@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+}
+
+article {
+    background-color: rgb(52, 100, 156);
+    border-radius: 1rem;
+    color: white;
+    padding: 20px;
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+
+    margin: 2em ;
+    max-width: 10000px;
+}
+
+h1, h2 {
+    font-family: Georgia, serif;
+}
