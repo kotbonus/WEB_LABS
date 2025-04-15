@@ -15,8 +15,8 @@ function determineAgeGroup(age) {
 }
 
 
-console.log(determineAgeGroup(20));
+console.log(determineAgeGroup(18));
 console.log(determineAgeGroup(1));
-console.log(determineAgeGroup(100));
-console.log(determineAgeGroup(11));
-console.log(determineAgeGroup(16));
+console.log(determineAgeGroup(80));
+console.log(determineAgeGroup(14));
+console.log(determineAgeGroup(21));

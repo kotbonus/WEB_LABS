@@ -4,6 +4,7 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+
 function combineCharacters(town, population, area) {
     console.log(`Town ${town} has population of ${population} and area ${area} square km.`);
 }

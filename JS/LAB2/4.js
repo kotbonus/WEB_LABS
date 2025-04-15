@@ -4,6 +4,7 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+
 function  combineCharacters(num1, operator, num2) {
     let result;
     switch (operator) {
@@ -17,7 +18,7 @@ function  combineCharacters(num1, operator, num2) {
             result = num1 * num2;
             break;
         case '/':
-            result = num2 !== 0 ? num1 / num2 : 'Ошибка: деление на ноль';
+            result = num2 !== 0 ? num1 / num2 : 'Ошибка. Деление на ноль';
             break;
     }
     if (typeof result === 'number') {

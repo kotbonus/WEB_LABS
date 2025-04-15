@@ -4,6 +4,7 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+
 function combineCharacters(char1, char2, char3) {
     const combinedString = char1 + char2 + char3;
     console.log(`Объединенные символы: ${combinedString}`);

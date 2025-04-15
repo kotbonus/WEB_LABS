@@ -1,12 +1,12 @@
 const readline = require("readline");
+
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-function sumOfDigits(number) { //наша функция
+function sumOfDigits(number) {
     let sum = 0;
-
     for (let digit of number) {
         sum += parseInt(digit, 10);
     }

@@ -15,7 +15,7 @@ function checkDivisors(number) {
 }
 
 
-console.log(checkDivisors(30));
-console.log(checkDivisors(15));
+console.log(checkDivisors(20));
 console.log(checkDivisors(12));
-console.log(checkDivisors(1643));
+console.log(checkDivisors(44));
+console.log(checkDivisors(4568));

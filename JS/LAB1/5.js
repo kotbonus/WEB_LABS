@@ -7,6 +7,6 @@ function isLeapYear(year) {
 }
 
 
-console.log(isLeapYear(1984));
-console.log(isLeapYear(2003));
+console.log(isLeapYear(1944));
+console.log(isLeapYear(2002));
 console.log(isLeapYear(2400));
