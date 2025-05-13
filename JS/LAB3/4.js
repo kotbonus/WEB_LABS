@@ -1,5 +1,4 @@
 function isMagicMatrix(matrix) {
-    // Проверяем, что матрица не пустая
     if (matrix.length === 0 || matrix[0].length === 0) {
         return false;
     }
