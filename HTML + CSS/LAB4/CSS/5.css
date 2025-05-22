@@ -1,0 +1,94 @@
+body {
+    background-color: #eee;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer {
+    height: 50px;
+    align-content: center;
+    position: absolute;
+
+}
+
+h2 {
+    font: 1.5em Georgia, serif;
+    margin: 20px 0 30px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.card img {
+    display: block;
+    width: 100%;
+}
+
+.card section {
+    padding: 20px;
+}
+
+.card section p:first-child {
+    font: bold 1.1em Arial, sans-serif;
+    margin-top: 0;
+}
+
+.card section p:last-child {
+    color: #555;
+    margin-bottom: 0;
+}
+
+.card footer {
+    position: absolute;
+    background: #f9f9f9;
+    border-top: 1px solid #eee;
+    color: #666;
+    font-size: 0.9em;
+    padding: 15px 20px;
+}
+
+.masonry {
+    column-count: 3;
+    column-gap: 20px;
+}
+
+.masonry .card {
+    break-inside: avoid;
+    display: inline-block;
+    width: 100%;
+}
+
+.masonry img {
+    height: auto;
+    object-fit: contain;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.flex .card {
+    display: flex;
+    flex: 0 0 calc(33.333% - 20px);
+    flex-direction: column;
+}
+
+.flex .card section {
+    flex-grow: 1;
+    min-height: 150px;
+}
+
+.flex img {
+    background: #f0f0f0;
+    object-fit: contain;
+}
