@@ -1,74 +1,70 @@
 body {
-    background-color: #eee;
-    padding: 20px;
+    background-color: rgb(238, 238, 238);
     font-family: Arial, sans-serif;
-    max-width: 1200px;
-    margin: 0 auto;
+    margin: 5em;
+    margin-left: 12em;
+    margin-right: 12em;
 }
 
-footer {
-    height: 50px;
-    align-content: center;
-    position: absolute;
-
+.cards-layout {
+    margin: 2em;
 }
 
 h2 {
-    font: 1.5em Georgia, serif;
-    margin: 20px 0 30px;
+    font-size: 24px;
+    font-weight: 500;
+    font-family: serif;
+    margin-bottom: 20px;
 }
 
 .card {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: fit-content;
+    max-width: 18rem;
 }
 
 .card img {
-    display: block;
-    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px 4px 0 0;
 }
 
-.card section {
-    padding: 20px;
-}
-
-.card section p:first-child {
-    font: bold 1.1em Arial, sans-serif;
-    margin-top: 0;
-}
-
-.card section p:last-child {
-    color: #555;
+.card h3 {
+    font-size: 16px;
+    margin: 20px;
     margin-bottom: 0;
+    font-weight: normal;
+    color: rgb(66, 66, 66);
 }
 
-.card footer {
-    position: absolute;
-    background: #f9f9f9;
-    border-top: 1px solid #eee;
-    color: #666;
-    font-size: 0.9em;
-    padding: 15px 20px;
+.card p {
+    font-size: 14px;
+    color: rgb(66, 66, 66);
+    margin: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    height:100%;
+}
+
+.card a {
+    border-top: 1px solid rgb(66, 66, 66);
+    color: rgb(66, 66, 66);
+    text-decoration: none;
+    display: block;
+    padding:20px;
 }
 
 .masonry {
-    column-count: 3;
-    column-gap: 20px;
-}
-
-.masonry .card {
-    break-inside: avoid;
-    display: inline-block;
-    width: 100%;
-}
-
-.masonry img {
-    height: auto;
-    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 110rem;
+    max-width: 50rem;
+    gap: 20px;
 }
 
 .flex {
@@ -78,17 +74,6 @@ h2 {
 }
 
 .flex .card {
-    display: flex;
-    flex: 0 0 calc(33.333% - 20px);
-    flex-direction: column;
-}
-
-.flex .card section {
-    flex-grow: 1;
-    min-height: 150px;
-}
-
-.flex img {
-    background: #f0f0f0;
-    object-fit: contain;
+    flex: 1 1 calc(33.333% - 20px);
+    box-sizing: border-box;
 }
