@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой личный блог</title>
-    <link rel="stylesheet" href="../KYRS/1.css">
+    <link rel="stylesheet" href="1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 <header>
@@ -27,20 +28,22 @@
     <div class="container">
         <div class="hero-content">
             <div>
-                <h1>Добро пожаловать в мой блог</h1>
-                <p>Здесь я делюсь своими мыслями, опытом и знаниями на различные темы. Присоединяйтесь к обсуждению!</p>
-                <a href="#" class="btn">Читать статьи</a>
+                <h1>Добро пожаловать в личный блог kotbonus'а </h1>
+                <p>Здесь я делюсь своим мнением по поводу игровой, музыкальной и кино индустрии</p>
+                <a href="#posts" class="btn">Читать статьи</a>
             </div>
         </div>
     </div>
 </section>
 
-<section class="blog-posts">
+<section class="blog-posts" id="posts">
     <div class="container">
         <div class="section-title">
             <h2>Последние статьи</h2>
             <p>Мои свежие размышления и заметки</p>
         </div>
+
+        <button id="add-article-btn" class="btn btn-accent">Добавить статью</button>
 
         <div class="posts-grid" id="posts-container">
             <!-- Посты будут загружены через JavaScript -->
@@ -69,11 +72,11 @@
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
-            <p class="copyright">&copy; 2023 Мой личный блог. Все права защищены.</p>
+            <p class="copyright">&copy; 2024 Мой личный блог. Все права защищены.</p>
         </div>
     </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="1.js"></script>
 </body>
 </html>
