@@ -1,64 +1,110 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Загружаем посты из localStorage или используем демо-данные
-    let posts = JSON.parse(localStorage.getItem('blogPosts')) || [
-        {
-            title: "CALL OF DUTY BLACK OPS 7",
-            excerpt: "На днях анонсировали новую часть серии игры COD",
-            date: getCurrentDate(),
-            image: "https://bnetcmsus-a.akamaihd.net/cms/blog_header/7m/7MFT7FOIH3I31749406406524.jpg?",
-            category: "games"
-        },
-        {
-            title: "Kai Angel новый сниппет",
-            excerpt: "Кай дропнул новый снипет и пообещал клип уже в эту пятницу!",
-            date: getCurrentDate(),
-            image: "https://sun1-57.userapi.com/impg/FFTNVXrkdAOIGJFqy5JIUpgwnnfizMmGsW2eBg/aFINaVfzSD4.jpg?size=604x604&quality=95&sign=5e9c0e26eb432bd97544809292223022&type=album",
-            category: "music"
-        }
-    ];
+    let postsData = JSON.parse(localStorage.getItem('blogPosts')) || {
+        active: [
+            {
+                title: "CALL OF DUTY BLACK OPS 7",
+                excerpt: "На днях анонсировали новую часть серии игры COD",
+                date: getCurrentDate(),
+                image: "https://bnetcmsus-a.akamaihd.net/cms/blog_header/7m/7MFT7FOIH3I31749406406524.jpg?",
+                category: "games"
+            },
+            {
+                title: "Kai Angel новый сниппет",
+                excerpt: "Кай дропнул новый снипет и пообещал клип уже в эту пятницу!",
+                date: getCurrentDate(),
+                image: "https://sun1-57.userapi.com/impg/FFTNVXrkdAOIGJFqy5JIUpgwnnfizMmGsW2eBg/aFINaVfzSD4.jpg?size=604x604&quality=95&sign=5e9c0e26eb432bd97544809292223022&type=album",
+                category: "music"
+            }
+        ],
+        archived: []
+    };
 
     // Элементы DOM
     const postsContainer = document.getElementById('posts-container');
+    const archivedContainer = document.getElementById('archived-posts-container');
     const subscribeForm = document.getElementById('subscribe-form');
     const addArticleBtn = document.getElementById('add-article-btn');
 
     // Функция для отображения всех постов
     function renderPosts() {
         postsContainer.innerHTML = '';
+        archivedContainer.innerHTML = '';
 
-        if (posts.length === 0) {
+        if (postsData.active.length === 0) {
             postsContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">Пока нет статей. Добавьте первую!</p>';
-            return;
+        } else {
+            postsData.active.forEach((post, index) => {
+                const postElement = createPostElement(post, index, false);
+                postsContainer.appendChild(postElement);
+            });
         }
 
-        posts.forEach((post, index) => {
-            const postElement = document.createElement('article');
-            postElement.className = 'post-card';
-            postElement.innerHTML = `
-            <div class="post-image">
-                <img src="${post.image}" alt="${post.title}">
-                <span class="post-category ${post.category}">${getCategoryName(post.category)}</span>
-            </div>
-            <div class="post-content">
-                <p class="post-date">${post.date}</p>
-                <h3 class="post-title">${post.title}</h3>
-                <p class="post-excerpt">${post.excerpt}</p>
-                <a href="#" class="read-more">Читать далее <i class="fas fa-arrow-right"></i></a>
-                <button class="delete-post" data-index="${index}">Удалить статью</button>
-            </div>
-        `;
-            postsContainer.appendChild(postElement);
-        });
-
-        // Добавляем обработчики для кнопок удаления
-        document.querySelectorAll('.delete-post').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation(); // Добавляем остановку всплытия
-                const index = parseInt(this.getAttribute('data-index'));
-                deletePost(index);
+        if (postsData.archived.length > 0) {
+            postsData.archived.forEach((post, index) => {
+                const archivedElement = createPostElement(post, index, true);
+                archivedContainer.appendChild(archivedElement);
             });
-        });
+        } else {
+            archivedContainer.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Нет архивированных статей</p>';
+        }
+    }
+
+    // Функция для создания элемента статьи
+    function createPostElement(post, index, isArchived) {
+        const postElement = document.createElement('article');
+        postElement.className = isArchived ? 'archived-post' : 'post-card';
+
+        if (isArchived) {
+            postElement.innerHTML = `
+                <div class="archived-post-content">
+                    <h4 class="archived-post-title">${post.title}</h4>
+                    <button class="restore-post" data-index="${index}">Восстановить</button>
+                </div>
+            `;
+        } else {
+            postElement.innerHTML = `
+                <div class="post-image">
+                    <img src="${post.image}" alt="${post.title}">
+                    <span class="post-category ${post.category}">${getCategoryName(post.category)}</span>
+                </div>
+                <div class="post-content">
+                    <p class="post-date">${post.date}</p>
+                    <h3 class="post-title">${post.title}</h3>
+                    <p class="post-excerpt">${post.excerpt}</p>
+                    <a href="#" class="read-more">Читать далее <i class="fas fa-arrow-right"></i></a>
+                    <div class="post-actions">
+                        <button class="archive-post" data-index="${index}">Архивировать</button>
+                        <button class="delete-post" data-index="${index}">Удалить статью</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Добавляем обработчики для кнопок
+        if (isArchived) {
+            postElement.querySelector('.restore-post').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                restorePost(index);
+            });
+        } else {
+            postElement.querySelector('.delete-post').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const index = parseInt(this.getAttribute('data-index'));
+                deletePost(index, false);
+            });
+
+            postElement.querySelector('.archive-post').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const index = parseInt(this.getAttribute('data-index'));
+                archivePost(index);
+            });
+        }
+
+        return postElement;
     }
 
     // Функция для получения названия категории
@@ -72,19 +118,42 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Функция для удаления поста
-    function deletePost(index) {
+    function deletePost(index, isArchived) {
         if (confirm('Вы уверены, что хотите удалить эту статью?')) {
-            posts.splice(index, 1);
+            if (isArchived) {
+                postsData.archived.splice(index, 1);
+            } else {
+                postsData.active.splice(index, 1);
+            }
             savePostsToLocalStorage();
             renderPosts();
-            // Добавим уведомление об успешном удалении
             alert('Статья успешно удалена!');
         }
     }
 
+    // Функция для архивирования поста
+    function archivePost(index) {
+        if (confirm('Вы уверены, что хотите архивировать эту статью?')) {
+            const [archivedPost] = postsData.active.splice(index, 1);
+            postsData.archived.unshift(archivedPost);
+            savePostsToLocalStorage();
+            renderPosts();
+            alert('Статья перемещена в архив!');
+        }
+    }
+
+    // Функция для восстановления поста из архива
+    function restorePost(index) {
+        const [restoredPost] = postsData.archived.splice(index, 1);
+        postsData.active.unshift(restoredPost);
+        savePostsToLocalStorage();
+        renderPosts();
+        alert('Статья восстановлена из архива!');
+    }
+
     // Функция для сохранения постов в localStorage
     function savePostsToLocalStorage() {
-        localStorage.setItem('blogPosts', JSON.stringify(posts));
+        localStorage.setItem('blogPosts', JSON.stringify(postsData));
     }
 
     // Функция для отображения формы добавления статьи
@@ -153,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
             category: category
         };
 
-        posts.unshift(newPost);
+        postsData.active.unshift(newPost);
         savePostsToLocalStorage();
         renderPosts();
     }
@@ -197,6 +266,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Первоначальная загрузка постов
     renderPosts();
 });

@@ -406,6 +406,9 @@ nav ul li a:hover::after {
     text-transform: uppercase;
     font-size: 0.9rem;
     letter-spacing: 1px;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 1;
 }
 
 .read-more:hover {
@@ -822,4 +825,88 @@ footer {
     .post-card {
         width: 100%;
     }
+}
+/* Стили для архивированных статей */
+.archived-section {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.archived-section h3 {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.archived-post {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 3px solid var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.archived-post:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-left-color: var(--accent-color);
+}
+
+.archived-post-title {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.restore-post {
+    background: rgba(0, 204, 255, 0.2);
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.restore-post:hover {
+    background: rgba(0, 204, 255, 0.4);
+    box-shadow: var(--glow);
+}
+
+.post-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.archive-post {
+    display: block;
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 1;
+}
+
+.archive-post:hover {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.delete-post {
+    width: 100%;
 }
