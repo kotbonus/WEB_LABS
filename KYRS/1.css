@@ -234,6 +234,21 @@ nav ul li a:hover::after {
     box-shadow: 0 6px 20px rgba(0, 204, 255, 0.6);
 }
 
+/* Добавьте этот код в ваш CSS файл */
+#add-article-btn {
+    display: block;
+    margin: 0 auto 3rem; /* Центрирование и отступ снизу */
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 204, 255, 0.4);
+}
+
+#add-article-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 204, 255, 0.6);
+}
+
 /* Блог посты */
 .blog-posts {
     padding: 5rem 0;
@@ -427,6 +442,8 @@ nav ul li a:hover::after {
     background: rgba(255, 45, 85, 0.4);
     box-shadow: var(--glow-red);
 }
+
+
 
 /* Стили для модального окна */
 .article-modal {

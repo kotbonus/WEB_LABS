@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #006b09;
+    border-bottom: 2px solid #07b148;
+    padding: 1rem;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+}
+
+.container {
+    display: flex;
+    flex-grow: 1;
+}
+
+main {
+    flex: 3;
+    padding: 1rem;
+}
+
+aside {
+    flex: 1;
+    border: dashed 0.1rem #006b09;
+    border-radius: 15px;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.posts-container h2 {
+    color: black;
+    border-bottom: 2px solid #07b148;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+article {
+    border: dashed 0.1rem #006b09;
+    border-radius: 15px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0.5em 1em 0.5em 0 rgba(64, 73, 59, 0.281);
+}
+
+article h1 {
+    margin-bottom: 0.5rem;
+}
+
+.post-meta {
+    color: #555;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+}
+
+.post-content {
+    margin-bottom: 1rem;
+}
+
+.post-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.post-actions button {
+    padding: 0.3rem 0.6rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #cf3a15;
+}
+
+.archive-btn {
+    background-color: #A3AE9E;
+}
+
+.form-section h2, .archive-section h2 {
+    color: black;
+    border-bottom: 2px solid #07b148;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 1px solid #40493B;
+    background: transparent;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+    border-bottom: 1px solid #40493B;
+}
+
+.create-btn {
+    background-color: #006b09;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.create-btn:hover {
+    background-color: #07b148;
+}
+
+.archive-list {
+    list-style-type: none;
+}
+
+.archive-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #ddd;
+}

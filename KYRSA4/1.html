@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог</title>
+    <link rel="stylesheet" href="../KYRSA4/1.css">
+</head>
+<body>
+<header>
+    Блог
+</header>
+<div class="container">
+    <main>
+        <div class="posts-container">
+            <h2>Записи</h2>
+            <div id="posts-list">
+                <article>
+                    <h1>Off-White x Nike Air Force 1 Mid SP Black</h1>
+                    <div class="post-meta">
+                        <span>Категория: Кроссовки</span> |
+                        <span>Бренд: Nike</span>
+                    </div>
+                    <div class="post-content">
+                        <p>Off-White x Nike Air Force 1 Mid коллаборация</p>
+                        <p> Большая часть верха сделана из синтетического материала с вертикальными полосами. Полупрозрачные «свуши» и ремешки на щиколотке украшены вышитыми узорами.</p>
+                        <p>Брендинг Off-White шрифтом Helvetica, оранжевые нашивки, а также традиционная пластиковая бирка дополняют дизайн. Мидсоль имеет изогнутую форму, как и протектор. </p>
+                        <p>Плюс кроссовки отличаются цветными акцентами и аутсолью с шипами, а также уникальной шнуровкой.</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="delete-btn">Удалить</button>
+                        <button class="archive-btn">Архив</button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+    <aside>
+        <div class="form-section">
+            <h2>Создать запись</h2>
+            <form id="post-form">
+                <div class="form-group">
+                    <label for="author">Бренд</label>
+                    <input type="text" id="author" required>
+                </div>
+                <div class="form-group">
+                    <label for="title">Заголовок</label>
+                    <input type="text" id="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Категория</label>
+                    <input type="text" id="category" required>
+                </div>
+                <div class="form-group">
+                    <label for="content">Содержание</label>
+                    <textarea id="content" required></textarea>
+                </div>
+                <button type="submit" class="create-btn">Создать</button>
+            </form>
+        </div>
+        <div class="archive-section">
+            <h2>Архив</h2>
+            <ol class="archive-list" id="archive-list">
+            </ol>
+        </div>
+    </aside>
+</div>
+<script src="../KYRSA4/2.js"></script>
+</body>
+</html>

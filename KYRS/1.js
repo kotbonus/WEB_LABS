@@ -2,20 +2,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Загружаем посты из localStorage или используем демо-данные
     let posts = JSON.parse(localStorage.getItem('blogPosts')) || [
         {
-            title: "Мой первый опыт в программировании",
-            excerpt: "Рассказываю о том, как я начал свой путь в IT и с какими трудностями столкнулся.",
-            content: "Полный текст статьи о моем первом опыте в программировании...",
+            title: "CALL OF DUTY BLACK OPS 7",
+            excerpt: "На днях анонсировали новую часть серии игры COD",
             date: getCurrentDate(),
-            image: "https://source.unsplash.com/random/600x400/?coding",
+            image: "https://bnetcmsus-a.akamaihd.net/cms/blog_header/7m/7MFT7FOIH3I31749406406524.jpg?",
             category: "games"
         },
         {
-            title: "Путешествие в горы: впечатления и советы",
-            excerpt: "Делимся опытом похода в горы и даем полезные советы для начинающих туристов.",
-            content: "Полный текст статьи о путешествии в горы...",
+            title: "Kai Angel новый сниппет",
+            excerpt: "Кай дропнул новый снипет и пообещал клип уже в эту пятницу!",
             date: getCurrentDate(),
-            image: "https://source.unsplash.com/random/600x400/?mountain",
-            category: "movies"
+            image: "https://sun1-57.userapi.com/impg/FFTNVXrkdAOIGJFqy5JIUpgwnnfizMmGsW2eBg/aFINaVfzSD4.jpg?size=604x604&quality=95&sign=5e9c0e26eb432bd97544809292223022&type=album",
+            category: "music"
         }
     ];
 
@@ -37,75 +35,29 @@ document.addEventListener('DOMContentLoaded', function() {
             const postElement = document.createElement('article');
             postElement.className = 'post-card';
             postElement.innerHTML = `
-                <div class="post-image">
-                    <img src="${post.image}" alt="${post.title}">
-                    <span class="post-category ${post.category}">${getCategoryName(post.category)}</span>
-                </div>
-                <div class="post-content">
-                    <p class="post-date">${post.date}</p>
-                    <h3 class="post-title">${post.title}</h3>
-                    <p class="post-excerpt">${post.excerpt}</p>
-                    <a href="#" class="read-more" data-index="${index}">Читать далее <i class="fas fa-arrow-right"></i></a>
-                    <button class="delete-post" data-index="${index}">Удалить статью</button>
-                </div>
-            `;
+            <div class="post-image">
+                <img src="${post.image}" alt="${post.title}">
+                <span class="post-category ${post.category}">${getCategoryName(post.category)}</span>
+            </div>
+            <div class="post-content">
+                <p class="post-date">${post.date}</p>
+                <h3 class="post-title">${post.title}</h3>
+                <p class="post-excerpt">${post.excerpt}</p>
+                <a href="#" class="read-more">Читать далее <i class="fas fa-arrow-right"></i></a>
+                <button class="delete-post" data-index="${index}">Удалить статью</button>
+            </div>
+        `;
             postsContainer.appendChild(postElement);
-        });
-
-        // Добавляем обработчики для кнопок "Читать далее"
-        document.querySelectorAll('.read-more').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const index = parseInt(this.getAttribute('data-index'));
-                showFullArticle(index);
-            });
         });
 
         // Добавляем обработчики для кнопок удаления
         document.querySelectorAll('.delete-post').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
-                e.stopPropagation();
+                e.stopPropagation(); // Добавляем остановку всплытия
                 const index = parseInt(this.getAttribute('data-index'));
                 deletePost(index);
             });
-        });
-    }
-
-    // Функция для отображения полной статьи
-    function showFullArticle(index) {
-        const post = posts[index];
-
-        // Создаем модальное окно
-        const modal = document.createElement('div');
-        modal.className = 'article-modal';
-        modal.innerHTML = `
-            <div class="modal-content">
-                <span class="close-modal">&times;</span>
-                <div class="modal-header">
-                    <h2>${post.title}</h2>
-                    <p class="post-date">${post.date}</p>
-                    <span class="post-category ${post.category}">${getCategoryName(post.category)}</span>
-                </div>
-                <div class="modal-body">
-                    <img src="${post.image}" alt="${post.title}" class="modal-image">
-                    <div class="article-content">${post.content}</div>
-                </div>
-            </div>
-        `;
-
-        document.body.appendChild(modal);
-
-        // Обработчик закрытия модального окна
-        modal.querySelector('.close-modal').addEventListener('click', function() {
-            modal.remove();
-        });
-
-        // Закрытие при клике вне контента
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.remove();
-            }
         });
     }
 
@@ -125,6 +77,8 @@ document.addEventListener('DOMContentLoaded', function() {
             posts.splice(index, 1);
             savePostsToLocalStorage();
             renderPosts();
+            // Добавим уведомление об успешном удалении
+            alert('Статья успешно удалена!');
         }
     }
 
@@ -144,12 +98,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         <input type="text" id="article-title" required>
                     </div>
                     <div>
-                        <label for="article-excerpt">Краткое описание</label>
+                        <label for="article-excerpt">Текст статьи</label>
                         <textarea id="article-excerpt" required></textarea>
-                    </div>
-                    <div>
-                        <label for="article-content">Полный текст статьи</label>
-                        <textarea id="article-content" required></textarea>
                     </div>
                     <div>
                         <label for="article-image">Ссылка на изображение</label>
@@ -192,14 +142,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function addNewArticle() {
         const title = document.getElementById('article-title').value;
         const excerpt = document.getElementById('article-excerpt').value;
-        const content = document.getElementById('article-content').value;
         const image = document.getElementById('article-image').value;
         const category = document.getElementById('article-category').value;
 
         const newPost = {
             title: title,
             excerpt: excerpt,
-            content: content,
             date: getCurrentDate(),
             image: image,
             category: category
